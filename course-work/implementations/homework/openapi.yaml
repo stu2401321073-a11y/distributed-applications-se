@@ -6,7 +6,7 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/stu2401321073organiz/Olympics_Management_System/3.0.0
   description: SwaggerHub API Auto Mocking
-- url: https://localhost:5001/api
+- url: https://localhost:5246/api
 paths:
   /auth/register:
     post:
