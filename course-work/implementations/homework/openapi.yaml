@@ -1,545 +1,511 @@
 openapi: 3.0.0
+
 info:
   title: Olympics Management System API
-  description: "Clean CRUD API with Users, Athletes, Competitions, Results"
   version: 3.0.0
+  description: Clean CRUD API with Users, Athletes, Competitions, Results
+
 servers:
-- url: https://virtserver.swaggerhub.com/stu2401321073organiz/Olympics_Management_System/3.0.0
-  description: SwaggerHub API Auto Mocking
-- url: https://localhost:5246/api
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/stu2401321073organiz/Olympics_Management_System/3.0.0
+  - url: https://localhost:5246/api
+
 paths:
+
+  # ================= AUTH =================
   /auth/register:
     post:
       summary: Register user
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserCreateDTO"
-        required: true
+              $ref: '#/components/schemas/UserCreateDTO'
       responses:
-        "200":
+        '200':
           description: Success
+
   /auth/login:
     post:
       summary: Login user
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserLoginDTO"
-        required: true
+              $ref: '#/components/schemas/UserLoginDTO'
       responses:
-        "200":
+        '200':
           description: JWT token
+
   /auth/logout:
     post:
       summary: Logout user
       responses:
-        "200":
+        '200':
           description: Logged out
+
+  # ================= USERS =================
   /users:
     get:
       summary: Get all users
       responses:
-        "200":
+        '200':
           description: List users
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/UserReadDTO"
+                  $ref: '#/components/schemas/UserReadDTO'
+
     post:
       summary: Create user
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserCreateDTO"
-        required: true
+              $ref: '#/components/schemas/UserCreateDTO'
       responses:
-        "200":
+        '200':
           description: Created
+
   /users/{id}:
     get:
       summary: Get user by id
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "200":
+        '200':
           description: User
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserReadDTO"
+                $ref: '#/components/schemas/UserReadDTO'
+
     put:
       summary: Update user
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserUpdateDTO"
-        required: true
+              $ref: '#/components/schemas/UserUpdateDTO'
       responses:
-        "204":
+        '204':
           description: Updated
+
     delete:
       summary: Delete user
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "204":
+        '204':
           description: Deleted
+
+  # ================= ATHLETES =================
   /athletes:
     get:
       summary: Get all athletes
       responses:
-        "200":
+        '200':
           description: List
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/AthleteReadDTO"
+                  $ref: '#/components/schemas/AthleteReadDTO'
+
     post:
       summary: Create athlete
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AthleteCreateDTO"
-        required: true
+              $ref: '#/components/schemas/AthleteCreateDTO'
       responses:
-        "200":
+        '200':
           description: Created
+
   /athletes/{id}:
     get:
       summary: Get athlete by id
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "200":
+        '200':
           description: Athlete
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AthleteReadDTO"
+                $ref: '#/components/schemas/AthleteReadDTO'
+
     put:
       summary: Update athlete
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AthleteUpdateDTO"
-        required: true
+              $ref: '#/components/schemas/AthleteUpdateDTO'
       responses:
-        "204":
+        '204':
           description: Updated
+
     delete:
       summary: Delete athlete
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "204":
+        '204':
           description: Deleted
+
+  # ================= COMPETITIONS =================
   /competitions:
     get:
       summary: Get all competitions
       responses:
-        "200":
+        '200':
           description: List
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/CompetitionReadDTO"
+                  $ref: '#/components/schemas/CompetitionReadDTO'
+
     post:
       summary: Create competition
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompetitionCreateDTO"
-        required: true
+              $ref: '#/components/schemas/CompetitionCreateDTO'
       responses:
-        "200":
+        '200':
           description: Created
+
   /competitions/{id}:
     get:
       summary: Get competition by id
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "200":
+        '200':
           description: Competition
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompetitionReadDTO"
+                $ref: '#/components/schemas/CompetitionReadDTO'
+
     put:
       summary: Update competition
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompetitionUpdateDTO"
-        required: true
+              $ref: '#/components/schemas/CompetitionUpdateDTO'
       responses:
-        "204":
+        '204':
           description: Updated
+
     delete:
       summary: Delete competition
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "204":
+        '204':
           description: Deleted
+
+  # ================= RESULTS =================
   /results:
     get:
       summary: Get all results
       responses:
-        "200":
+        '200':
           description: List
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/ResultReadDTO"
+                  $ref: '#/components/schemas/ResultReadDTO'
+
     post:
       summary: Create result
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ResultCreateDTO"
-        required: true
+              $ref: '#/components/schemas/ResultCreateDTO'
       responses:
-        "200":
+        '200':
           description: Created
+
   /results/{id}:
     get:
       summary: Get result by id
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "200":
+        '200':
           description: Result
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResultReadDTO"
+                $ref: '#/components/schemas/ResultReadDTO'
+
     put:
       summary: Update result
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ResultUpdateDTO"
-        required: true
+              $ref: '#/components/schemas/ResultUpdateDTO'
       responses:
-        "204":
+        '204':
           description: Updated
+
     delete:
       summary: Delete result
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        "204":
+        '204':
           description: Deleted
+
+# ================= COMPONENTS =================
 components:
+
   schemas:
+
+    # USER
     UserCreateDTO:
-      required:
-      - email
-      - password
       type: object
+      required: [email, password]
       properties:
-        email:
-          type: string
-        password:
-          type: string
+        email: { type: string }
+        password: { type: string }
+
     UserUpdateDTO:
       type: object
       properties:
-        email:
-          type: string
-        password:
-          type: string
+        email: { type: string }
+        password: { type: string }
+
     UserLoginDTO:
-      required:
-      - email
-      - password
       type: object
+      required: [email, password]
       properties:
-        email:
-          type: string
-        password:
-          type: string
+        email: { type: string }
+        password: { type: string }
+
     UserReadDTO:
       type: object
       properties:
-        id:
-          type: integer
-        email:
-          type: string
+        id: { type: integer }
+        email: { type: string }
+
+    # ATHLETE
     AthleteCreateDTO:
-      required:
-      - country
-      - firstName
-      - lastName
       type: object
+      required: [firstName, lastName, country]
       properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        country:
-          type: string
-        gender:
-          type: integer
-        birthDate:
-          type: string
-          format: date
-        height:
-          type: integer
-        weight:
-          type: number
-        isActive:
-          type: boolean
-        imageUrl:
-          type: string
+        firstName: { type: string }
+        lastName: { type: string }
+        country: { type: string }
+        gender: { type: integer }
+        birthDate: { type: string, format: date }
+        height: { type: integer }
+        weight: { type: number }
+        isActive: { type: boolean }
+        imageUrl: { type: string }
+
     AthleteUpdateDTO:
       type: object
       properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        country:
-          type: string
-        gender:
-          type: integer
-        birthDate:
-          type: string
-          format: date
-        height:
-          type: integer
-        weight:
-          type: number
-        isActive:
-          type: boolean
-        imageUrl:
-          type: string
+        firstName: { type: string }
+        lastName: { type: string }
+        country: { type: string }
+        gender: { type: integer }
+        birthDate: { type: string, format: date }
+        height: { type: integer }
+        weight: { type: number }
+        isActive: { type: boolean }
+        imageUrl: { type: string }
+
     AthleteReadDTO:
       type: object
       properties:
-        id:
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        country:
-          type: string
-        gender:
-          type: integer
-        birthDate:
-          type: string
-          format: date
-        height:
-          type: integer
-        weight:
-          type: number
-        isActive:
-          type: boolean
-        imageUrl:
-          type: string
+        id: { type: integer }
+        firstName: { type: string }
+        lastName: { type: string }
+        country: { type: string }
+        gender: { type: integer }
+        birthDate: { type: string, format: date }
+        height: { type: integer }
+        weight: { type: number }
+        isActive: { type: boolean }
+        imageUrl: { type: string }
+
+    # COMPETITION
     CompetitionCreateDTO:
-      required:
-      - eventDate
-      - eventName
-      - gameType
-      - sport
-      - venue
       type: object
+      required: [eventName, sport, gameType, eventDate, venue]
       properties:
-        eventName:
-          type: string
-        sport:
-          type: string
-        gameType:
-          type: integer
-        eventDate:
-          type: string
-          format: date-time
-        venue:
-          type: string
-        prizePool:
-          type: number
-        imageUrl:
-          type: string
+        eventName: { type: string }
+        sport: { type: string }
+        gameType: { type: integer }
+        eventDate: { type: string, format: date-time }
+        venue: { type: string }
+        prizePool: { type: number }
+        imageUrl: { type: string }
+
     CompetitionUpdateDTO:
       type: object
       properties:
-        eventName:
-          type: string
-        sport:
-          type: string
-        gameType:
-          type: integer
-        eventDate:
-          type: string
-          format: date-time
-        venue:
-          type: string
-        prizePool:
-          type: number
-        imageUrl:
-          type: string
+        eventName: { type: string }
+        sport: { type: string }
+        gameType: { type: integer }
+        eventDate: { type: string, format: date-time }
+        venue: { type: string }
+        prizePool: { type: number }
+        imageUrl: { type: string }
+
     CompetitionReadDTO:
       type: object
       properties:
-        id:
-          type: integer
-        eventName:
-          type: string
-        sport:
-          type: string
-        gameType:
-          type: integer
-        eventDate:
-          type: string
-          format: date-time
-        venue:
-          type: string
-        prizePool:
-          type: number
-        imageUrl:
-          type: string
+        id: { type: integer }
+        eventName: { type: string }
+        sport: { type: string }
+        gameType: { type: integer }
+        eventDate: { type: string, format: date-time }
+        venue: { type: string }
+        prizePool: { type: number }
+        imageUrl: { type: string }
+
+    # RESULT
     ResultCreateDTO:
-      required:
-      - athleteId
-      - competitionId
-      - medal
-      - score
       type: object
+      required: [athleteId, competitionId, score, medal]
       properties:
-        athleteId:
-          type: integer
-        competitionId:
-          type: integer
-        score:
-          type: number
-        rank:
-          type: integer
-        medal:
-          type: integer
-        achievedOn:
-          type: string
-          format: date-time
-        isRecord:
-          type: boolean
-        imageUrl:
-          type: string
+        athleteId: { type: integer }
+        competitionId: { type: integer }
+        score: { type: number }
+        rank: { type: integer }
+        medal: { type: integer }
+        achievedOn: { type: string, format: date-time }
+        isRecord: { type: boolean }
+        imageUrl: { type: string }
+
     ResultUpdateDTO:
       type: object
       properties:
-        athleteId:
-          type: integer
-        competitionId:
-          type: integer
-        score:
-          type: number
-        rank:
-          type: integer
-        medal:
-          type: integer
-        achievedOn:
-          type: string
-          format: date-time
-        isRecord:
-          type: boolean
-        imageUrl:
-          type: string
+        athleteId: { type: integer }
+        competitionId: { type: integer }
+        score: { type: number }
+        rank: { type: integer }
+        medal: { type: integer }
+        achievedOn: { type: string, format: date-time }
+        isRecord: { type: boolean }
+        imageUrl: { type: string }
+
     ResultReadDTO:
       type: object
       properties:
-        id:
-          type: integer
-        athleteId:
-          type: integer
-        competitionId:
-          type: integer
-        score:
-          type: number
-        rank:
-          type: integer
-        medal:
-          type: integer
-        achievedOn:
-          type: string
-          format: date-time
-        isRecord:
-          type: boolean
-        imageUrl:
-          type: string
+        id: { type: integer }
+        athleteId: { type: integer }
+        competitionId: { type: integer }
+        score: { type: number }
+        rank: { type: integer }
+        medal: { type: integer }
+        achievedOn: { type: string, format: date-time }
+        isRecord: { type: boolean }
+        imageUrl: { type: string }
+
+# ================= BONUSES =================
+x-bonus-features:
+
+  description: |
+    Extended system features beyond mandatory requirements.
+
+  features:
+
+    - name: Image Support
+      description: Entities support ImageUrl for visualization.
+
+    - name: Console Client
+      description: Full CRUD console frontend.
+
+    - name: JWT Authentication
+      description: Secure login system using tokens.
+
+    - name: Filtering, Sorting, Pagination Ready
+      description: API designed to support advanced queries.
+
+    - name: Clean Architecture
+      description: Layered design (Controllers → Services → Repositories → DB).
